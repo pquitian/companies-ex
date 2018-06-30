@@ -90,3 +90,15 @@ module.exports.doEdit = (req, res, next) => {
         })
         .catch(err => next(err));
 };
+
+module.exports.delete = (req, res, next) => {
+    const id = req.params.id;
+
+    Company.findByIdAndRemove(id)
+    .then(()=>{
+        res.redirect('/companies');
+    })
+    .catch((err)=>{
+        next(err);
+    })
+}
