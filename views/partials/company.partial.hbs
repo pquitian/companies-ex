@@ -1,12 +1,12 @@
 <div class="card">
-  <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+  {{!-- <img class="card-img-top" src="{{this.image}}" alt="Card image cap"> --}}
   <div class="card-body">
     <h5 class="card-title">{{this.name}}</h5>
     <p class="card-text">{{this.code}}</p>
     <p class="card-text">{{this.money}}</p>
     <p class="card-text">{{this.description}}</p>
     <a href="/companies/{{this.id}}" class="text-primary">Details</a>
-    <a href="#" class="text-warning">Edit</a>
+    <a href="/companies/edit/{{this.id}}" class="text-warning">Edit</a>
     <a href="#" class="btn btn-primary">Delete</a>
   </div>
 </div>

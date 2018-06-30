@@ -13,8 +13,8 @@ module.exports.list = (req, res, next) => {
         });
 }
 
-module.exports.get = (req, res, next) => { 
-    const id = req.params.id; 
+module.exports.get = (req, res, next) => {
+    const id = req.params.id;
 
     Company.findById(id)
         .then(company => {
@@ -27,13 +27,66 @@ module.exports.get = (req, res, next) => {
         });
 }
 
-module.exports.create = (req, res, next) => { 
-    res.render('companies/create');
+module.exports.create = (req, res, next) => {
+    res.render('companies/create', {
+        company: new Company()
+    });
 }
 
-module.exports.doCreate = (req ,res, next) => {
+module.exports.doCreate = (req, res, next) => {
+    let company = new Company(req.body);
+    company.save()
+        .then(() => res.redirect('/'))
+        .catch(err => {
+            if (err instanceof mongoose.Error.ValidationError) {
+                res.render('company/create', {
+                    company: company,
+                    errors: error.errors
+                });
+            } else {
+                next(err);
+            }
+        });
+};
+
+module.exports.edit = (req, res, next) => {
+    const id = req.params.id; 
+    Company.findById(id)
+        .then(company => {
+            res.render('companies/create',{
+                company
+            });
+        })
+        .catch((err)=>{
+            next(err)
+        });
+};
+
+module.exports.doEdit = (req, res, next) => {
     // let company = new Company(req.body);
-    // company.save()
-    //     .then(() => res.redirect('/'))
-    //     .catch()
-}
+    const id = req.params.id;
+
+    Company.findById(id)
+        .then(company => {
+            if(company) {
+                Object.assign(company, req.body);
+                company.save()
+                    .then(() => {
+                        res.redirect(`/companies/${id}`);
+                    })
+                    .catch(err => {
+                        if(err instanceof mongoose.Error.ValidationError) {
+                            res.render('companies/create', {
+                                companies: companies, 
+                                error: error.errors
+                            });
+                        } else {
+                            next(error);
+                        }
+                    })
+            } else {
+                next(err);
+            }
+        })
+        .catch(err => next(err));
+};
