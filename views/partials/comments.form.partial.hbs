@@ -1,0 +1,13 @@
+<form data-errors='{{{ json errors }}}'
+  action='/comments/create/{{this._id}}'
+  method="post">
+  <h4>Comments</h4>
+
+  <div class="form-group">
+    <input type="text" class="form-control" id="commentTitle" placeholder="Title for your comment" name="title">
+  </div>
+  <div class="form-group">
+    <textarea type="text" class="form-control" id="textTitle" placeholder="Your comment" name="text" row="8"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

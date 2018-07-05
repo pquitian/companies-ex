@@ -39,9 +39,9 @@ module.exports.doCreate = (req, res, next) => {
         .then(() => res.redirect('/'))
         .catch(err => {
             if (err instanceof mongoose.Error.ValidationError) {
-                res.render('company/create', {
+                res.render('companies/create', {
                     company: company,
-                    errors: error.errors
+                    errors: err.errors
                 });
             } else {
                 next(err);

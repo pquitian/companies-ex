@@ -1,5 +1,5 @@
 <form method="POST" 
-
+data-errors="{{json errors}}"
 action=
 {{#if this.isNew}}
   "/companies/docreate"
@@ -9,23 +9,23 @@ action=
 >
   <div class="form-group">
     <label for="exampleInputEmail1">Company name</label>
-    <input type="text" class="form-control" name="name" id="companyName"  value="{{this.name}}" placeholder="Name">
+    <input type="text" class="form-control" name="name" id="name"  value="{{this.name}}" placeholder="Name">
   </div>
   <div class="form-group">
     <label for="companyCode">Code</label>
-    <input type="text" class="form-control" name="code" id="companyCode" value="{{this.code}}" placeholder="Code">
+    <input type="text" class="form-control" name="code" id="code" value="{{this.code}}" placeholder="Code">
   </div>
   <div class="form-group">
     <label for="companyCode">Image URL</label>
-    <input type="text" class="form-control" name="image" id="companyImage" value="{{this.image}}" placeholder="Image Url">
+    <input type="text" class="form-control" name="image" id="company" value="{{this.image}}" placeholder="Image Url">
   </div>
   <div class="form-group">
     <label for="companyCode">Money</label>
-    <input type="text" class="form-control" name="money" id="companyMoney" value="{{this.money}}" placeholder="Money">
+    <input type="text" class="form-control" name="money" id="money" value="{{this.money}}" placeholder="Money">
   </div>
   <div class="form-group">
     <label for="companyCode">Description</label>
-    <input type="text" class="form-control" name="description" id="companyDescription" value="{{this.description}}" placeholder="Description">
+    <input type="text" class="form-control" name="description" id="description" value="{{this.description}}" placeholder="Description">
   </div>
   <button type="submit" class="btn btn-primary">Send</button>
 </form>
