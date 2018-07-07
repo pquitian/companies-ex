@@ -6,6 +6,7 @@ const logger = require('morgan');
 
 const companyRouter = require('./routes/companies');
 const commentRouter = require('./routes/comments');
+const usersRouter = require('./routes/users');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/users', usersRouter);
 app.use('/companies', companyRouter);
 app.use('/comments', commentRouter);
 app.use('/', (req, res) => res.redirect('/companies'));
